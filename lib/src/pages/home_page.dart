@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Column(
         children: [
-          _showGraph(),
+          Container(height: 200.0, child: _showGraph()),
           Expanded(
             child: ListView.builder(
               itemCount: bands.length,
@@ -169,10 +169,7 @@ class _HomePageState extends State<HomePage> {
       dataMap.putIfAbsent(band.name, () => band.votes.toDouble());
     });
 
-    return Container(
-      width: double.infinity,
-      height: 200.0,
-      margin: EdgeInsets.all(10.0),
+    return Expanded(
       child: PieChart(
         dataMap: dataMap,
         chartType: ChartType.disc,
@@ -183,13 +180,6 @@ class _HomePageState extends State<HomePage> {
           showChartValuesInPercentage: true,
           showChartValuesOutside: false,
           chartValueStyle: TextStyle(color: Colors.black),
-        ),
-        legendOptions: LegendOptions(
-          showLegendsInRow: false,
-          showLegends: true,
-          legendTextStyle: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
         ),
       ),
     );
